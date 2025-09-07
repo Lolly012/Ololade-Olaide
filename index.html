@@ -246,8 +246,13 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh; /* Fallback */
-    min-height: calc(var(--vh, 1vh) * 100); /* Use JavaScript calculated height */
+           min-height: 100vh;
+            min-height: -webkit-fill-available; /* Fix for iOS viewport height */
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
 
         .hero::before {
@@ -1184,13 +1189,7 @@
                 this.init();
                 this.bindEvents();
                 this.startAnimations();
-                // Add this method to your PortfolioApp class
-setViewportHeight() {
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    
+           
     // Update on resize
     window.addEventListener('resize', () => {
         let vh = window.innerHeight * 0.01;
@@ -1570,6 +1569,7 @@ setViewportHeight() {
 </body>
 
 </html>
+
 
 
 
