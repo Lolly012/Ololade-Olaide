@@ -1379,25 +1379,42 @@
                 return emailRegex.test(email);
             }
 
-            async submitForm(data) {
-                try {
-                    const submitBtn = this.contactForm.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.textContent;
-                    
-                    submitBtn.textContent = 'Sending...';
-                    submitBtn.disabled = true;
-                    
-                    // Simulate API call
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                    
-                    this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-                    this.contactForm.reset();
-                    
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                } catch (error) {
-                    this.showNotification('Failed to send message. Please try again.', 'error');
-                }
+            // Replace your existing submitForm method with this:
+async submitForm(data) {
+    try {
+        const submitBtn = this.contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // ACTUALLY SUBMIT THE FORM TO FORMSPREE
+        const formData = new FormData(this.contactForm);
+        
+        const response = await fetch(this.contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            this.contactForm.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+        
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    } catch (error) {
+        this.showNotification('Failed to send message. Please try again.', 'error');
+        const submitBtn = this.contactForm.querySelector('button[type="submit"]');
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+    }
+}
             }
 
             showNotification(message, type) {
@@ -1569,6 +1586,7 @@
 </body>
 
 </html>
+
 
 
 
