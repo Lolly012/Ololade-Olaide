@@ -884,7 +884,6 @@
             }
         }
 
-            
         /* Safari-specific fixes */
         @supports (-webkit-touch-callout: none) {
             .navbar {
@@ -900,8 +899,8 @@
             .hero {
                 min-height: -webkit-fill-available;
             }
-
-             /* Fix for Safari backdrop-filter */
+            
+            /* Fix for Safari backdrop-filter */
             @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
                 .navbar {
                     background: var(--bg-glass);
@@ -1250,8 +1249,6 @@
                 
                 // Resize handler
                 window.addEventListener('resize', this.throttle(this.handleResize.bind(this), 250));
-
-                window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), 16), { passive: true });
             }
               handleScroll() {
                 const scrollY = window.scrollY;
@@ -1317,7 +1314,7 @@
                             behavior: 'auto'
                         });
                     }
-
+                }
                 
                 // Close mobile menu if open
                 if (this.navLinks.classList.contains('mobile-open')) {
@@ -1605,12 +1602,6 @@ try {
 </body>
 
 </html>
-
-
-
-
-
-
 
 
 
