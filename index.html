@@ -253,6 +253,7 @@
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: calc(var(--vh, 1vh) * 100);
         }
 
         .hero::before {
@@ -883,27 +884,26 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* Safari-specific fixes */
-        @supports (-webkit-touch-callout: none) {
-            .navbar {
-                background: rgba(255, 255, 255, 0.9);
-                -webkit-backdrop-filter: blur(12px);
-            }
-            
-            [data-theme="dark"] .navbar {
-                background: rgba(15, 23, 42, 0.9);
-            }
             
             /* Fix for iOS viewport height issue */
             .hero {
                 min-height: -webkit-fill-available;
             }
-            
-            /* Fix for Safari backdrop-filter */
-            @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
-                .navbar {
-                    background: var(--bg-glass);
+            .navbar {
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    
+    @supports not (backdrop-filter: blur(12px)) {
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.9);
+        }
+    }
                 }
             }
         }
@@ -1249,6 +1249,8 @@
                 
                 // Resize handler
                 window.addEventListener('resize', this.throttle(this.handleResize.bind(this), 250));
+
+                window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), 16), { passive: true });
             }
               handleScroll() {
                 const scrollY = window.scrollY;
@@ -1313,8 +1315,15 @@
                             top: offsetTop,
                             behavior: 'auto'
                         });
+                        }
                     }
-                }
+    
+                        destroyParticles() {
+                        const container = document.querySelector('.particles-container');
+                        if (container) {
+                            container.remove();
+                     }
+                        };
                 
                 // Close mobile menu if open
                 if (this.navLinks.classList.contains('mobile-open')) {
@@ -1588,9 +1597,21 @@ try {
         }
 
     </script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Olaide Ololade",
+          "jobTitle": "Website Designer",
+          "url": "https://ololade-olaide.vercel.app"
+        }
+    </script>
+    
 </body>
 
 </html>
+
 
 
 
