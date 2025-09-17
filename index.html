@@ -884,26 +884,28 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+            
+        /* Safari-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .navbar {
+                background: rgba(255, 255, 255, 0.9);
+                -webkit-backdrop-filter: blur(12px);
+            }
+            
+            [data-theme="dark"] .navbar {
+                background: rgba(15, 23, 42, 0.9);
+            }
             
             /* Fix for iOS viewport height issue */
             .hero {
                 min-height: -webkit-fill-available;
             }
-            .navbar {
-        background: var(--bg-glass);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-    }
-    
-    @supports not (backdrop-filter: blur(12px)) {
-        .navbar {
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        [data-theme="dark"] .navbar {
-            background: rgba(15, 23, 42, 0.9);
-        }
-    }
+
+             /* Fix for Safari backdrop-filter */
+            @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+                .navbar {
+                    background: var(--bg-glass);
                 }
             }
         }
@@ -1610,6 +1612,7 @@ try {
 </body>
 
 </html>
+
 
 
 
