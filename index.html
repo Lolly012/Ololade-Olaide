@@ -253,7 +253,6 @@
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            min-height: calc(var(--vh, 1vh) * 100);
         }
 
         .hero::before {
@@ -1318,13 +1317,7 @@
                             behavior: 'auto'
                         });
                     }
-    
-                        destroyParticles() {
-                        const container = document.querySelector('.particles-container');
-                        if (container) {
-                            container.remove();
-                     }
-                        }
+
                 
                 // Close mobile menu if open
                 if (this.navLinks.classList.contains('mobile-open')) {
@@ -1612,6 +1605,7 @@ try {
 </body>
 
 </html>
+
 
 
 
