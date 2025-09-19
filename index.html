@@ -279,7 +279,7 @@
             z-index: 1;
             padding-top: 0px;
             margin-top: 35px;
-            margin-buttom: 35px;
+            margin-bottom: 35px;
         }
 
         .hero-content h1 {
@@ -479,17 +479,213 @@
 
         /* About Section */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start; /* Changed from center to start */
+}
 
         .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+        /* Professional Photo Styles */
+.professional-photo {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-container {
+    position: relative;
+    width: 280px;
+    height: 320px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover {
+    transform: translateY(-5px);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover .profile-image {
+    transform: scale(1.05);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover .photo-overlay {
+    transform: translateY(0);
+}
+
+.photo-badge {
+    background: var(--gradient-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    display: inline-block;
+}
+
+.badge-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* Professional Stats */
+.professional-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--primary-color); /* Fallback for browsers that don't support background-clip */
+    margin-bottom: 0.5rem;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .stat-number {
+        color: transparent;
+    }
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.about-description p {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design for Enhanced About Section */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .professional-photo {
+        order: -1; /* Show photo first on mobile */
+    }
+    
+    .photo-container {
+        width: 240px;
+        height: 280px;
+    }
+    
+    .professional-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .stat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-container {
+        width: 200px;
+        height: 240px;
+    }
+    
+    .professional-stats {
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.25rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation for professional photo */
+@keyframes photoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.professional-photo.fade-in.visible {
+    animation: photoFadeIn 0.8s ease forwards;
+}
+
+/* Fallback for when image fails to load */
+.profile-image {
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.profile-image::before {
+    content: "OO";
+    display: block;
+}
+
+.profile-image[src]:not([src=""]) {
+    background: none;
+}
+
+.profile-image[src]:not([src=""])::before {
+    display: none;
+}
 
         .about-text p {
             margin-bottom: 1.5rem;
@@ -985,17 +1181,30 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">
-                    Passionate designer with a focus on creating efficient, scalable solutions
-                </p>
-            </div>
-            <div class="about-content">
-                <div class="about-text fade-in">
+    <!-- Enhanced About Section with Professional Photo -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+                Passionate designer with a focus on creating efficient, scalable solutions
+            </p>
+        </div>
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <!-- Professional Photo -->
+                <div class="professional-photo">
+                    <div class="photo-container">
+                        <img src="Assets/Gemini_Generated_Image_z0u45wz0u45wz0u4.png" alt="Olaide Ololade - Professional Portrait" class="profile-image">
+                        <div class="photo-overlay">
+                            <div class="photo-badge">
+                                <span class="badge-text">2+ Years Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-description">
                     <p>
                         With over 2 years of experience in web design, I specialize in creating 
                         beautiful and functional websites using modern technologies. My expertise spans across 
@@ -1011,32 +1220,50 @@
                         emerging technologies, or working on personal creative projects that push the boundaries 
                         of web design.
                     </p>
-                </div>
-                <div class="skills-grid fade-in">
-                    <div class="skill-category">
-                        <h4>Design & Frontend</h4>
-                        <div class="skill-list">
-                            <span class="skill-tag">HTML</span>
-                            <span class="skill-tag">CSS</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">WordPress</span>
-                            <span class="skill-tag">UI/UX Design</span>
+                    
+                    <!-- Professional Stats -->
+                    <div class="professional-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Projects Completed</div>
                         </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Tools & Software</h4>
-                        <div class="skill-list">
-                            <span class="skill-tag">Elementor</span>
-                            <span class="skill-tag">Adobe Photoshop</span>
-                            <span class="skill-tag">Canva</span>
-                            <span class="skill-tag">VS Code</span>
-                            <span class="skill-tag">Microsoft Suite</span>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2+</div>
+                            <div class="stat-label">Years Experience</div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <div class="skills-grid fade-in">
+                <div class="skill-category">
+                    <h4>Design & Frontend</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Software</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Elementor</span>
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Microsoft Suite</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Projects Section -->
     <section class="section" id="projects">
@@ -1602,7 +1829,6 @@ try {
 </body>
 
 </html>
-
 
 
 
