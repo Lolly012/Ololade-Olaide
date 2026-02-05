@@ -225,6 +225,59 @@
             transform: scale(1.1);
         }
 
+        .cv-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.view-cv {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.view-cv:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+}
+
+.download-cv {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.download-cv:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cv-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .cv-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -1843,6 +1896,7 @@ try {
     
 </body>
 </html>
+
 
 
 
