@@ -865,6 +865,183 @@
             color: var(--accent-color);
         }
 
+
+        /* Creative Work Section */
+        #creative.section { background: var(--bg-primary); }
+
+        .creative-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .creative-tab {
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .creative-tab:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+        .creative-tab.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .creative-panel { display: none; }
+        .creative-panel.active { display: block; }
+
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 300px));
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .video-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 270px));
+        }
+
+        .creative-card {
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 2 / 3; /* portrait flyers */
+            padding: 0;
+            text-align: left;
+            font-family: inherit;
+            color: inherit;
+            display: block;
+            width: 100%;
+        }
+
+        .video-grid .creative-card { aspect-ratio: 9 / 16; }
+
+        .creative-card:hover, .creative-card:focus-visible {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            outline: none;
+        }
+
+        .creative-card img, .creative-card video.thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .creative-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(6,182,212,0.12));
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .creative-placeholder .ph-icon { font-size: 2rem; }
+
+        .creative-caption {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 2.5rem 1rem 0.9rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: #fff;
+            transform: translateY(40%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .creative-card:hover .creative-caption,
+        .creative-card:focus-visible .creative-caption { transform: translateY(0); opacity: 1; }
+
+        .creative-caption h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem; }
+        .creative-caption span { font-size: 0.8rem; opacity: 0.85; }
+
+        .play-badge {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.65);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(255,255,255,0.8);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.4rem; padding-left: 4px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .creative-card:hover .play-badge { transform: translate(-50%, -50%) scale(1.12); background: var(--primary-color); }
+
+        .creative-tools {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.5rem; margin-top: 2.5rem;
+        }
+
+        /* Lightbox / video modal */
+        .lightbox {
+            position: fixed; inset: 0;
+            background: rgba(2, 6, 23, 0.92);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 10001;
+            padding: 1.5rem;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox-inner { max-width: 1100px; width: 100%; max-height: 100%; text-align: center; }
+
+        .lightbox-inner img, .lightbox-inner video, .lightbox-inner iframe {
+            max-width: 100%;
+            max-height: 78vh;
+            border-radius: 0.5rem;
+            background: #000;
+        }
+
+        .lightbox-inner iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; }
+
+        .lightbox-title { color: #fff; margin-top: 1rem; font-weight: 600; }
+        .lightbox-desc { color: #cbd5e1; font-size: 0.9rem; margin-top: 0.25rem; }
+
+        .lightbox-close {
+            position: absolute; top: 1rem; right: 1.25rem;
+            background: rgba(255,255,255,0.12);
+            border: none; color: #fff;
+            width: 44px; height: 44px; border-radius: 50%;
+            font-size: 1.25rem; cursor: pointer;
+        }
+
+        .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+        @media (max-width: 768px) {
+            .creative-grid, .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+            .creative-caption { transform: translateY(0); opacity: 1; }
+        }
+
         /* Contact Section */
         .contact {
             background: var(--bg-secondary);
@@ -1070,7 +1247,7 @@
             
             .hero-container {
                 padding: 1rem;
-                top-margin: 10px;
+                margin-top: 10px;
             }
             
             .container {
@@ -1098,6 +1275,7 @@
             .section-title {
                   padding-top: 40px; /* adjust the value as needed */
                   text-align: center;
+            }
         }
 
         /* Scroll animations */
@@ -1165,6 +1343,7 @@
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#creative">Creative</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="cv-buttons">
@@ -1200,7 +1379,7 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Olaide Ololade</h1>
-                <p class="subtitle">UI/UX & Website Designer</p>
+                <p class="subtitle">UI/UX, Website & Graphic Designer · Video Editor</p>
                 <p class="description">
                     Crafting beautiful and functional websites with 2+ years of experience in modern web design. 
                     Passionate about creating user-friendly experiences and helping businesses establish their digital presence.
@@ -1232,7 +1411,7 @@
                             &nbsp;&nbsp;name: <span class="string">'Olaide Ololade'</span>,
                         </div>
                         <div class="code-line">
-                            &nbsp;&nbsp;skills: [<span class="string">'UI/UX'</span>, <span class="string">'WordPress'</span>, <span class="string">'Creative Design'</span>],
+                            &nbsp;&nbsp;skills: [<span class="string">'UI/UX'</span>, <span class="string">'WordPress'</span>, <span class="string">'Graphics'</span>, <span class="string">'Video Editing'</span>],
                         </div>
                         <div class="code-line">
                             &nbsp;&nbsp;passion: <span class="string">'Building amazing websites'</span>
@@ -1271,7 +1450,7 @@
                     <p>
                         With over 2 years of experience in web design, I specialize in creating 
                         beautiful and functional websites using modern technologies. My expertise spans across 
-                        WordPress development, UI/UX design, and creating compelling digital experiences.
+                        WordPress development, UI/UX design, graphic design and video editing, so a brand's website, visuals and motion content all come from one place.
                     </p>
                     <p>
                         I'm passionate about combining creativity with functionality to deliver websites that 
@@ -1310,6 +1489,8 @@
                         <span class="skill-tag">CSS</span>
                         <span class="skill-tag">WordPress</span>
                         <span class="skill-tag">Media Design</span>
+                        <span class="skill-tag">Graphic Design</span>
+                        <span class="skill-tag">Video Editing</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -1404,6 +1585,49 @@
         </div>
     </section>
 
+    <!-- Creative Work Section -->
+    <section class="section" id="creative">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Creative Work</h2>
+                <p class="section-subtitle">
+                    Graphic design and video editing - brand visuals, social content and motion work
+                </p>
+            </div>
+
+            <div class="creative-tabs fade-in" role="tablist">
+                <button class="creative-tab active" role="tab" data-tab="graphics" aria-selected="true">Graphic Design</button>
+                <button class="creative-tab" role="tab" data-tab="videos" aria-selected="false">Video Editing</button>
+            </div>
+
+            <div class="creative-panel active" id="panel-graphics">
+                <div class="creative-grid" id="graphicsGrid"></div>
+            </div>
+
+            <div class="creative-panel" id="panel-videos">
+                <div class="creative-grid video-grid" id="videosGrid"></div>
+            </div>
+
+            <div class="creative-tools fade-in">
+                <span class="skill-tag">Adobe Photoshop</span>
+                <span class="skill-tag">Canva</span>
+                <span class="skill-tag">Video Editing</span>
+                <span class="skill-tag">Motion Graphics</span>
+                <span class="skill-tag">Social Media Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+        <div class="lightbox-inner">
+            <div id="lightboxMedia"></div>
+            <div class="lightbox-title" id="lightboxTitle"></div>
+            <div class="lightbox-desc" id="lightboxDesc"></div>
+        </div>
+    </div>
+
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
@@ -1486,6 +1710,158 @@
         </div>
     </footer>
      <script>
+        /* ==========================================================
+           CREATIVE WORK CONFIG - edit these two lists to add your work
+           ----------------------------------------------------------
+           GRAPHICS: put image files in Assets/Graphics/ then add:
+             { title: 'Logo for X', category: 'Branding', src: 'Assets/Graphics/logo-x.webp' }
+
+           VIDEOS: either
+             - a local file:  { title:'...', category:'...', src:'Assets/Videos/promo.mp4', poster:'Assets/Videos/promo.jpg' }
+             - a YouTube id:  { title:'...', category:'...', youtube:'dQw4w9WgXcQ' }
+           Items with no src/youtube show a "coming soon" placeholder. Videos are portrait (9:16).
+           ========================================================== */
+        const GRAPHICS = [
+            { title: 'Dubai Multiple Entry Visa', category: 'Travel Flyer',  src: 'Assets/Graphics/dubai-multiple-entry-visa.webp' },
+            { title: 'Ready to Study Abroad?',    category: 'Social Media Ad', src: 'Assets/Graphics/study-abroad-flyer.webp' }
+        ];
+
+        const VIDEOS = [
+            { title: 'Product Launch Reel', category: 'Short-form · Reels/TikTok', src: 'Assets/Videos/product-launch-reel.mp4', poster: 'Assets/Videos/product-launch-reel.jpg' },
+            { title: 'Talking-Head Edit',   category: 'Short-form · Captions & cuts', src: 'Assets/Videos/talking-head-edit.mp4', poster: 'Assets/Videos/talking-head-edit.jpg' }
+        ];
+
+        class CreativeShowcase {
+            constructor() {
+                this.lightbox = document.getElementById('lightbox');
+                this.media = document.getElementById('lightboxMedia');
+                this.titleEl = document.getElementById('lightboxTitle');
+                this.descEl = document.getElementById('lightboxDesc');
+                if (!this.lightbox) return;
+
+                this.render('graphicsGrid', GRAPHICS, false);
+                this.render('videosGrid', VIDEOS, true);
+
+                document.querySelectorAll('.creative-tab').forEach(tab => {
+                    tab.addEventListener('click', () => this.switchTab(tab.dataset.tab));
+                });
+                document.getElementById('lightboxClose').addEventListener('click', () => this.close());
+                this.lightbox.addEventListener('click', e => { if (e.target === this.lightbox) this.close(); });
+                document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
+            }
+
+            switchTab(name) {
+                document.querySelectorAll('.creative-tab').forEach(t => {
+                    const on = t.dataset.tab === name;
+                    t.classList.toggle('active', on);
+                    t.setAttribute('aria-selected', on);
+                });
+                document.querySelectorAll('.creative-panel').forEach(p => {
+                    p.classList.toggle('active', p.id === 'panel-' + name);
+                });
+                // pause any thumbnails/videos when leaving
+                this.close();
+            }
+
+            render(gridId, items, isVideo) {
+                const grid = document.getElementById(gridId);
+                items.forEach(item => {
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = 'creative-card fade-in visible';
+                    card.setAttribute('aria-label', (isVideo ? 'Play ' : 'View ') + item.title);
+
+                    const hasMedia = isVideo ? (item.src || item.youtube) : item.src;
+                    const thumb = isVideo
+                        ? (item.poster || (item.youtube ? `https://i.ytimg.com/vi/${item.youtube}/hqdefault.jpg` : ''))
+                        : item.src;
+
+                    if (thumb) {
+                        const img = document.createElement('img');
+                        img.src = thumb;
+                        img.alt = item.title;
+                        img.loading = 'lazy';
+                        img.onerror = () => { img.replaceWith(this.placeholder(isVideo)); };
+                        card.appendChild(img);
+                    } else if (isVideo && item.src) {
+                        const v = document.createElement('video');
+                        v.className = 'thumb';
+                        v.src = item.src + '#t=0.5';
+                        v.preload = 'metadata';
+                        v.muted = true;
+                        v.playsInline = true;
+                        card.appendChild(v);
+                    } else {
+                        card.appendChild(this.placeholder(isVideo));
+                    }
+
+                    if (isVideo && hasMedia) {
+                        const play = document.createElement('div');
+                        play.className = 'play-badge';
+                        play.textContent = '▶';
+                        card.appendChild(play);
+                    }
+
+                    const cap = document.createElement('div');
+                    cap.className = 'creative-caption';
+                    cap.innerHTML = '<h4></h4><span></span>';
+                    cap.querySelector('h4').textContent = item.title;
+                    cap.querySelector('span').textContent = item.category || '';
+                    card.appendChild(cap);
+
+                    if (hasMedia) {
+                        card.addEventListener('click', () => this.open(item, isVideo));
+                    } else {
+                        card.style.cursor = 'default';
+                    }
+                    grid.appendChild(card);
+                });
+            }
+
+            placeholder(isVideo) {
+                const d = document.createElement('div');
+                d.className = 'creative-placeholder';
+                d.innerHTML = '<div class="ph-icon">' + (isVideo ? '🎬' : '🎨') + '</div><div>Coming soon</div>';
+                return d;
+            }
+
+            open(item, isVideo) {
+                this.media.innerHTML = '';
+                if (!isVideo) {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = item.title;
+                    this.media.appendChild(img);
+                } else if (item.youtube) {
+                    const f = document.createElement('iframe');
+                    f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.youtube)}?autoplay=1&rel=0`;
+                    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                    f.allowFullscreen = true;
+                    f.title = item.title;
+                    this.media.appendChild(f);
+                } else {
+                    const v = document.createElement('video');
+                    v.src = item.src;
+                    v.controls = true;
+                    v.autoplay = true;
+                    v.playsInline = true;
+                    if (item.poster) v.poster = item.poster;
+                    this.media.appendChild(v);
+                }
+                this.titleEl.textContent = item.title;
+                this.descEl.textContent = item.category || '';
+                this.lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            close() {
+                if (!this.lightbox || !this.lightbox.classList.contains('open')) return;
+                this.lightbox.classList.remove('open');
+                this.media.innerHTML = ''; // stops playback
+                document.body.style.overflow = '';
+            }
+        }
+
         class PortfolioApp {
             constructor() {
                 this.init();
@@ -1567,7 +1943,7 @@
             }
 
             updateActiveNav() {
-                const sections = ['home', 'about', 'projects', 'contact'];
+                const sections = ['home', 'about', 'projects', 'creative', 'contact'];
                 const navLinks = document.querySelectorAll('.nav-links a');
                 
                 let currentSection = '';
@@ -1865,6 +2241,7 @@ try {
         // Initialize the application when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             new PortfolioApp();
+            new CreativeShowcase();
         });
 
         // Handle loading screen
